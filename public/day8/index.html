@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>08 - What is "this"?</title>
+  </head>
+  <body>
+    <div style="text-align: center;"><h1>What is "this"</h1></div>
+    <div style="white-space: pre;">
+      <h2>Lixical scope & Dynamic scope</h2>
+      function printName() {
+          console.log(this)
+      }
+  
+      printName()
+      -----------------------
+      result = Window
+      -----------------------
+
+      <h2>How to know what is "this"?</h2>
+      functin printName() {
+        console.log(this)
+        console.log(`My name is ${this.name}`)
+    }
+    <h3>1 Invoker object</h3>
+    const sam = {name: 'sam', printName}
+    const my = {name: 'my', printName}
+
+    sam.printName()
+    my.printName()
+    printName()
+    ----------------------------------------------
+    result
+    ----------------------------------------------
+    Object { name: "sam", printName: printName() }
+    My name is sam
+    Object { name: "my", printName: printName() }
+    My name is my
+    Window
+    My name is
+    ----------------------------------------------
+    <h3>2 Global object (window, global)</h3>
+    name = 'Global'
+    printName()
+    -----------------
+    result
+    -----------------
+    Window
+    My name is Global
+    -----------------
+    <h3>3 Constructor function</h3>
+    function Person(name) {
+        this.name = name
+        this.printName = printName
+    }
+
+    const my = new Person('My')
+    my.printName()
+    ----------------------------------
+    result
+    ----------------------------------
+    Object { name: "My", printName() }
+    My name is My
+    ----------------------------------
+    <h2>3 call(), apply(), bind()</h2>
+    function printName(nationality, city) {
+        console.log(this)
+        console.log(`My name is ${this.name}, I'm ${nationality} and am living in ${city}`)
+    }
+
+    function Person(name, nationality, city) {
+        this.name = name
+        this.nationality = nationality
+        this.city = city
+
+        printName(this.nationality, this.city)
+        printName.call(this, this.nationality, this.city)
+        printName.apply(this, [this.nationality, this.city])
+
+        const printMy = printName.bind(this)
+        printMy(this.nationality, this.city)
+    }
+
+    const my = new Person('my', 'thai', 'bangkok')
+    -----------------------------------------------------------
+    result
+    -----------------------------------------------------------
+    ======================================
+    printName(this.nationality, this.city)
+    ======================================
+    Window
+    My name is , I'm thai and am living in bangkok
+
+    =================================================
+    printName.call(this, this.nationality, this.city)
+    =================================================
+    Object { name: "my", nationality: "thai", city: "bangkok" }
+    My name is my, I'm thai and am living in bangkok
+
+    ====================================================
+    printName.apply(this, [this.nationality, this.city])
+    ====================================================
+    Object { name: "my", nationality: "thai", city: "bangkok" }
+    My name is my, I'm thai and am living in bangkok
+
+    ====================================
+    const printMy = printName.bind(this)
+    printMy(this.nationality, this.city)
+    ====================================
+    Object { name: "my", nationality: "thai", city: "bangkok" }
+    My name is my, I'm thai and am living in bangkok
+    -----------------------------------------------------------
+    </div>
+    <script src="./scripts.js"></script>
+  </body>
+</html>
