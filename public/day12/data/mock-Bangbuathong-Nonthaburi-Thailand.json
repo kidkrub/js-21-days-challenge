@@ -1,0 +1,12 @@
+{
+  "data": {
+    "current": {
+      "pollution": {"aqius": 89},
+      "weather": {
+          "tp": 32,
+          "hu": 38,
+          "ws": 6.7
+    }
+    }
+  }
+}
