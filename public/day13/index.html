@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>13 - JavaScript Weird Parts</title>
+  </head>
+  <body>
+    <div style="white-space: pre;">
+        <h1 style="text-align: center;">JavaScript Weird Parts</h1>
+        <h2>1. NaN</h2>
+        NaN ไม่เท่ากับตัวมันเอง เพื่อป้องกันการคำนวณที่ผิดพลาด เช่น NaN/Nan === 1 หรือ NaN * 1 === NaN 
+        if (NaN/NaN) {
+            console.log('Equal')
+        }
+        วิธีเช็คว่าเป็น NaN หรือไม่
+        const result = 1 / 'hello'
+        if(Number.isNaN(result)) {
+            console.log('Equal to NaN')
+        }
+        
+        <h2>2. Type Coercion</h2>
+        if (1 < 2 < 3) {
+            console.log('Inside')
+        }
+        แปลงเป็น (true < 3) -> (1 < 3) = true
+        
+        if (3 < 2 < 1) {
+            console.log('Inside')
+        }
+        แปลงเป็น (true < 1) -> (1 < 1) = false
+        
+        console.log(2 - '1')
+        js แปลง String เป็น Number
+        
+        console.log(2 + '1')
+        js แปลง Number เป็น String
+        
+        console.log(true + true)
+        js แปลง Boolean เป็น Number
+        
+        <h2>3. Interpreter & Complier</h2>
+        function getPerson() {
+            return
+            {
+                name: 'firstname'
+            }
+        }
+        console.log(getPerson())
+        
+        function getPerson() {
+            return js ใส่ ; ให้อัตโนมัติในบรรทัดนี้ ทำให้ไม่เกิดการทำงานต่อ
+            {
+                name: 'firstname'
+            }
+        }
+        
+        <h2>4. Checking Object Type</h2>
+        const person = {}
+        if(typeof person === 'object' && person !== null) {
+            console.log('Yes, it is')
+        }
+        
+        null เป็น Object เหมือนกัน ถ้าจะเช็ค object ต้องเช็คว่าไม่เท่ากับ null ด้วย
+    </div>
+    <script src="./scripts.js"></script>
+  </body>
+</html>
