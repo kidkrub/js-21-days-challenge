@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>18 - What is "prototype"?</title>
+  </head>
+  <body>
+    <div style="white-space: pre;">
+        <h2>Class vs Prototype</h2>
+        <b>Class use for easily create prototype</b>
+
+        class Person {
+      
+        }
+        const my = new Person()
+        console.log(my)
+        
+        <h2>What's Prototype</h2>
+        <b>Peototype is object that store function and method</b>
+        
+        const name = 'My'
+        console.log(name.__proto__)
+        const arr = []
+        console.log(arr.__proto__)
+      
+        <h2>Prototype Chain</h2>
+        const name = 'Me'
+        console.log(name.__proto__)
+        console.log(name.toLocaleString())
+      
+        <h2>Extend a prototype</h2>
+        const name = 'My'
+        function sayHello(val) {
+          console.log(`Hello ${val}`)
+        }
+        String.prototype.sayHello = sayHello
+        console.log(name.__proto__)
+        name.sayHello('World')
+      })()
+    </div>
+    <script src="./scripts.js"></script>
+  </body>
+</html>
