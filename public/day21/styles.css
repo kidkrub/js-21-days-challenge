@@ -29,12 +29,12 @@ h1 {
 }
 
 .gallery > img {
-  flex: 1;
+  flex: auto;
   object-fit: cover;
 }
 
 .gallery > img:nth-child(3n) {
-  flex: 2;
+  flex: auto;
 }
 
 .loader {
