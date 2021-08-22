@@ -11,9 +11,11 @@
   
   function countDown() {
     const now = new Date().getTime();
-    const newYear = new Date('December 31, 2020 23:59:59').getTime();
+    const nextyear = new Date().getFullYear()+1
+    const newYear = new Date('January 1, ' + nextyear + ' 00:00:00').getTime();
     const unixTimeLeft = newYear - now;
 
+    setElementInnerText('year', nextyear);
     setElementInnerText('days', Math.floor(unixTimeLeft / DAY));
     setElementInnerText('hours', Math.floor((unixTimeLeft % DAY) / HOUR));
     setElementInnerText('minutes', Math.floor((unixTimeLeft % HOUR) / MINUTE));
